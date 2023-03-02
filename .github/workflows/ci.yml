@@ -216,20 +216,17 @@ jobs:
             NODE_ENV=unsafe npm run test:server
 
   sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        # Disabling shallow clone is recommended for improving relevancy of reporting  
-        fetch-depth: 0
-    - name: SonarCloud Scan
-      uses: Sonarsource/sonarcloud-github-action@master
-         args:
-         -Dsonar.projectKey=DEV
-         -Dsonar.organization=ALTICE     
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: 10207955db4efe640e3b6674fc8d3ba8c686d15c
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   e2e:
     runs-on: ${{ matrix.os }}
