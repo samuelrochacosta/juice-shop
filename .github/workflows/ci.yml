@@ -224,12 +224,13 @@ jobs:
         fetch-depth: 0
     - name: SonarCloud Scan
       uses: Sonarsource/sonarcloud-github-action@master
+         args:
+         -Dsonar.projectKey=DEV
+         -Dsonar.organization=ALTICE     
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: 10207955db4efe640e3b6674fc8d3ba8c686d15c
-        args:
-         -Dsonar.projectKey=DEV
-         -Dsonar.organization=ALTICE
+
   e2e:
     runs-on: ${{ matrix.os }}
     strategy:
