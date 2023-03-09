@@ -261,7 +261,7 @@ jobs:
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master # For node projects, change accordingly
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}    
+          SNYK_TOKEN: e5b1b5d5-9589-48db-8e48-95be2f0f72ba    
         with:
           command: monitor
 
