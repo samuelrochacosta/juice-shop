@@ -254,8 +254,8 @@ jobs:
       run: cat ${{ steps.scan.outputs.sarif }}
   
   snyk:
+    name: Snyk Security
     runs-on: ubuntu-latest
-    needs: sonarcloud
     steps:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
