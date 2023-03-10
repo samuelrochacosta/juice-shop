@@ -229,6 +229,7 @@ jobs:
           SONAR_TOKEN: d1cc5fd276a8dc5d165dc536a09b014d145b2d33
 
   image_scanning:
+    name: ImageScanning
     permissions:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
@@ -401,6 +402,7 @@ jobs:
           heroku_email: bjoern.kimminich@owasp.org
           branch: ${{ env.HEROKU_BRANCH }}
   snyk:
+    name: SourceCodeScanning
     permissions:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
