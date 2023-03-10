@@ -439,7 +439,7 @@ jobs:
           SNYK_TOKEN: 4d4f2bc5-daf2-4d4f-b21b-248548a1eb65
       
       - name: Snyk IaC test and report
-        run: snyk iac test --report || true
+        run: snyk iac test --report --project-environment=frontend || true
         env:
           SNYK_TOKEN: 4d4f2bc5-daf2-4d4f-b21b-248548a1eb65
 
