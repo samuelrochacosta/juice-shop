@@ -401,6 +401,8 @@ jobs:
           heroku_app_name: ${{ env.HEROKU_APP }}
           heroku_email: bjoern.kimminich@owasp.org
           branch: ${{ env.HEROKU_BRANCH }}
+          
+  
   snyk:
     name: SourceCodeScanning
     permissions:
@@ -433,6 +435,11 @@ jobs:
         
       - name: Snyk Open Source monitor
         run: npm install && snyk monitor 
+        env:
+          SNYK_TOKEN: 4d4f2bc5-daf2-4d4f-b21b-248548a1eb65
+      
+      - name: Snyk IaC test and report
+        run: snyk iac test --report # || true
         env:
           SNYK_TOKEN: 4d4f2bc5-daf2-4d4f-b21b-248548a1eb65
 
