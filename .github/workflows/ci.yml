@@ -409,13 +409,15 @@ jobs:
         uses: snyk/actions/node@master
         continue-on-error: true # To make sure that SARIF upload gets called
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          SNYK_TOKEN: 4d4f2bc5-daf2-4d4f-b21b-248548a1eb65
         with:
           args: --sarif-file-output=snyk.sarif
-      - name: Upload result to GitHub Code Scanning
+      - name: Upload vulnerability report
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: snyk.sarif   
+         sarif_file: ${{ steps.scan.outputs.sarif }}
+      - name: Inspect action SARIF report
+        run: cat ${{ steps.scan.outputs.sarif }}  
 
   notify-slack:
     if: github.repository == 'juice-shop/juice-shop' && github.event_name == 'push' && (success() || failure())
