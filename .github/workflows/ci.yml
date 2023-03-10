@@ -284,9 +284,13 @@ jobs:
         
       - name: Snyk Open Source monitor
         run: snyk monitor
+        env:
+          # This is where you will need to introduce the Snyk API token created with your Snyk account
+          SNYK_TOKEN: 4d4f2bc5-daf2-4d4f-b21b-248548a1eb65
       
       - name: Inspect action SARIF report
         run: cat snyk-code.sarif
+        
 
   e2e:
     runs-on: ${{ matrix.os }}
