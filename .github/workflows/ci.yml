@@ -401,15 +401,16 @@ jobs:
           heroku_email: bjoern.kimminich@owasp.org
           branch: ${{ env.HEROKU_BRANCH }}
   snyk:
-    name: Snyk_Security
     runs-on: ubuntu-latest
-
+    needs: sonarcloud
     steps:
       - uses: actions/checkout@master
-      - name: Testing
-        run: snyk test --all-projects
-        env: 
-          SNYK_TOKEN: 4d4f2bc5-daf2-4d4f-b21b-248548a1eb65      
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master # For node projects, change accordingly
+        env:
+          SNYK_TOKEN: 4d4f2bc5-daf2-4d4f-b21b-248548a1eb65    
+        with:
+          command: test all-projects   
 
   notify-slack:
     if: github.repository == 'juice-shop/juice-shop' && github.event_name == 'push' && (success() || failure())
