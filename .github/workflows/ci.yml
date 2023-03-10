@@ -430,7 +430,7 @@ jobs:
         run: cat snyk-code.sarif
         
       - name: Snyk Open Source monitor
-        run: ls packages | xargs -I PKG_NAME snyk monitor --file=packages/PKG_NAME/package.json
+        run: npm install && snyk monitor 
         env:
           SNYK_TOKEN: 4d4f2bc5-daf2-4d4f-b21b-248548a1eb65
 
