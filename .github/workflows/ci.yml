@@ -430,7 +430,7 @@ jobs:
         run: cat snyk-code.sarif
         
       - name: Snyk Open Source monitor
-        run: snyk monitor
+        run: snyk monitor --file=../../../package.json
         env:
           SNYK_TOKEN: 4d4f2bc5-daf2-4d4f-b21b-248548a1eb65
 
