@@ -407,16 +407,10 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master # For node projects, change accordingly
+        uses: snyk/actions/node@master
         env:
-          SNYK_TOKEN: 4d4f2bc5-daf2-4d4f-b21b-248548a1eb65    
-        with:
-          command: monitor
-  
-  
-  
+          SNYK_TOKEN: 4d4f2bc5-daf2-4d4f-b21b-248548a1eb65      
 
-  
   notify-slack:
     if: github.repository == 'juice-shop/juice-shop' && github.event_name == 'push' && (success() || failure())
     needs:
